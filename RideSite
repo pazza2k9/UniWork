@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Club Ride Administrator Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="q2b.css" />
+  <style>
+    #submittedDataBox {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+    }
+    .editable {
+      display: block;
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+    }
+    .ride-entry {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+    }
+    .ride-entry button {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Club Ride Administrator Page</h1>
+  <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="club_ride_page.html">Club Ride Page</a></li>
+        <li><a href="social_events.html">Social Events</a></li>
+        <li><a href="membership_page.html">Membership Page</a></li>
+        <li><a href="announcements.html">Announcements</a></li>
+        <li><a href="news.html">News</a></li>
+      </ul>
+    </nav>
+  <h2>Add New Ride</h2>
+  <form id="rideForm">
+    <fieldset>
+      <div class="form-group">
+        <label for="Name_of_Ride">Name of Ride:</label>
+        <input id="Name_of_Ride" name="Name_of_Ride" type="text" required minlength="3" maxlength="100" />
+      </div>
+      <div class="form-group">
+        <label for="Type_of_Ride">Type of Ride:</label>
+        <input id="Type_of_Ride" name="Type_of_Ride" type="text" list="ride-types" required />
+        <datalist id="ride-types">
+          <option value="Road">
+          <option value="Mountain">
+          <option value="Hybrid">
+        </datalist>
+      </div>
+      <div class="form-group">
+        <label for="Date_of_Ride">Date of Ride:</label>
+        <input id="Date_of_Ride" name="Date_of_Ride" type="date" required />
+      </div>
+      <div class="form-group">
+        <label for="Start_Time">Start Time:</label>
+        <input id="Start_Time" name="Start_Time" type="time" required />
+      </div>
+      <div class="form-group">
+        <label for="Duration">Duration:</label>
+        <input id="Duration" name="Duration" type="number" step="0.5" min="0.5" required />
+      </div>
+      <div class="form-group">
+        <label for="Meeting_Point">Meeting Point:</label>
+        <input id="Meeting_Point" name="Meeting_Point" type="text" required minlength="3" maxlength="100" />
+      </div>
+      <div class="form-group">
+        <label for="Distance_in_km">Distance in km:</label>
+        <input id="Distance_in_km" name="Distance_in_km" type="number" min="1" max="1000" required />
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="form-group">
+        <label for="Elavation_in_m">Elavation in m:</label>
+        <input id="Elavation_in_m" name="Elavation_in_m" type="number" min="0" required />
+      </div>
+      <div class="form-group">
+        <label for="Maximum_Group_Size">Maximum Group Size:</label>
+        <input id="Maximum_Group_Size" name="Maximum_Group_Size" type="number" min="1" max="100" required />
+      </div>
+      <div class="form-group">
+        <label for="Name_of_Leader">Name of Leader:</label>
+        <input id="Name_of_Leader" name="Name_of_Leader" type="text" required minlength="3" maxlength="100" />
+      </div>
+      <div class="form-group">
+        <label for="Contact_Number">Contact Number:</label>
+        <input id="Contact_Number" name="Contact_Number" type="tel" required pattern="[0-9]{11}" />
+      </div>
+      <div class="form-group">
+        <label for="Alternative_Contact_Number">Alternative Contact Number:</label>
+        <input id="Alternative_Contact_Number" name="Alternative_Contact_Number" type="tel" pattern="[0-9]{11}" />
+      </div>
+      <div class="form-group">
+        <label for="Comments">Comments:</label>
+        <input id="Comments" name="Comments" type="text" maxlength="500" />
+      </div>
+      <div class="form-group">
+        <label for="Status">Status:</label>
+        <select id="Status" name="Status" required>
+          <option value="" disabled selected>Select status</option>
+          <option value="Proposed">Proposed</option>
+          <option value="Approved">Approved</option>
+          <option value="Rejected">Rejected</option>
+        </select>
+      </div>
+      <input type="hidden" id="SessionIdentifier" name="SessionIdentifier" value="ff53-dd45-dcba9876-9090">
+    </fieldset>
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="submittedDataBox" style="display: none;">
+    <h2>Submitted Ride Information</h2>
+    <div class="form-group">
+      <label for="display_Name_of_Ride">Name of Ride:</label>
+      <input id="display_Name_of_Ride" class="editable" type="text" />
+    </div>
+    <div class="form-group">
+      <label for="display_Type_of_Ride">Type of Ride:</label>
+      <input id="display_Type_of_Ride" class="editable" type="text" />
+    </div>
+    <div class="form-group">
+      <label for="display_Date_of_Ride">Date of Ride:</label>
+      <input id="display_Date_of_Ride" class="editable" type="date" />
+    </div>
+    <div class="form-group">
+      <label for="display_Start_Time">Start Time:</label>
+      <input id="display_Start_Time" class="editable" type="time" />
+    </div>
+    <div class="form-group">
+      <label for="display_Duration">Duration:</label>
+      <input id="display_Duration" class="editable" type="number" step="0.5" min="0.5" />
+    </div>
+    <div class="form-group">
+      <label for="display_Meeting_Point">Meeting Point:</label>
+      <input id="display_Meeting_Point" class="editable" type="text" />
+    </div>
+    <div class="form-group">
+      <label for="display_Distance_in_km">Distance in km:</label>
+      <input id="display_Distance_in_km" class="editable" type="number" min="1" max="1000" />
+    </div>
+    <div class="form-group">
+      <label for="display_Elavation_in_m">Elavation in m:</label>
+      <input id="display_Elavation_in_m" class="editable" type="number" min="0" />
+    </div>
+    <div class="form-group">
+      <label for="display_Maximum_Group_Size">Maximum Group Size:</label>
+      <input id="display_Maximum_Group_Size" class="editable" type="number" min="1" max="100" />
+    </div>
+    <div class="form-group">
+      <label for="display_Name_of_Leader">Name of Leader:</label>
+      <input id="display_Name_of_Leader" class="editable" type="text" />
+    </div>
+    <div class="form-group">
+      <label for="display_Contact_Number">Contact Number:</label>
+      <input id="display_Contact_Number" class="editable" type="tel" pattern="[0-9]{11}" />
+    </div>
+    <div class="form-group">
+      <label for="display_Alternative_Contact_Number">Alternative Contact Number:</label>
+      <input id="display_Alternative_Contact_Number" class="editable" type="tel" pattern="[0-9]{11}" />
+    </div>
+    <div class="form-group">
+      <label for="display_Comments">Comments:</label>
+      <input id="display_Comments" class="editable" type="text" maxlength="500" />
+    </div>
+    <div class="form-group">
+      <label for="display_Status">Status:</label>
+      <select id="display_Status" class="editable">
+        <option value="" disabled selected>Select status</option>
+        <option value="Proposed">Proposed</option>
+        <option value="Approved">Approved</option>
+        <option value="Rejected">Rejected</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="submittedDataList"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Load saved rides from localStorage
+      const savedRides = JSON.parse(localStorage.getItem('rides')) || [];
+      savedRides.forEach(addRideToList);
+    });
+
+    document.getElementById('rideForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form from submitting the traditional way
+
+      // Get form data
+      const formData = new FormData(event.target);
+
+      // Create a ride object
+      const ride = {
+        Name_of_Ride: formData.get('Name_of_Ride'),
+        Type_of_Ride: formData.get('Type_of_Ride'),
+        Date_of_Ride: formData.get('Date_of_Ride'),
+        Start_Time: formData.get('Start_Time'),
+        Duration: formData.get('Duration'),
+        Meeting_Point: formData.get('Meeting_Point'),
+        Distance_in_km: formData.get('Distance_in_km'),
+        Elavation_in_m: formData.get('Elavation_in_m'),
+        Maximum_Group_Size: formData.get('Maximum_Group_Size'),
+        Name_of_Leader: formData.get('Name_of_Leader'),
+        Contact_Number: formData.get('Contact_Number'),
+        Alternative_Contact_Number: formData.get('Alternative_Contact_Number'),
+        Comments: formData.get('Comments'),
+        Status: formData.get('Status')
+      };
+
+      // Save the ride to localStorage
+      const savedRides = JSON.parse(localStorage.getItem('rides')) || [];
+      savedRides.push(ride);
+      localStorage.setItem('rides', JSON.stringify(savedRides));
+
+      // Add the ride to the list
+      addRideToList(ride);
+
+      // Reset the form
+      document.getElementById('rideForm').reset();
+    });
+
+    function addRideToList(ride) {
+      // Create a new div for the submitted data
+      const rideEntry = document.createElement('div');
+      rideEntry.className = 'ride-entry';
+
+      rideEntry.innerHTML = `
+        <p><strong>Name of Ride:</strong> ${ride.Name_of_Ride}</p>
+        <p><strong>Type of Ride:</strong> ${ride.Type_of_Ride}</p>
+        <p><strong>Date of Ride:</strong> ${ride.Date_of_Ride}</p>
+        <p><strong>Start Time:</strong> ${ride.Start_Time}</p>
+        <p><strong>Duration:</strong> ${ride.Duration}</p>
+        <p><strong>Meeting Point:</strong> ${ride.Meeting_Point}</p>
+        <p><strong>Distance in km:</strong> ${ride.Distance_in_km}</p>
+        <p><strong>Elavation in m:</strong> ${ride.Elavation_in_m}</p>
+        <p><strong>Maximum Group Size:</strong> ${ride.Maximum_Group_Size}</p>
+        <p><strong>Name of Leader:</strong> ${ride.Name_of_Leader}</p>
+        <p><strong>Contact Number:</strong> ${ride.Contact_Number}</p>
+        <p><strong>Alternative Contact Number:</strong> ${ride.Alternative_Contact_Number}</p>
+        <p><strong>Comments:</strong> ${ride.Comments}</p>
+        <p><strong>Status:</strong> ${ride.Status}</p>
+        <button type="button" class="editButton">Edit</button>
+        <button type="button" class="deleteButton">Delete</button>
+      `;
+
+      // Append the new div to the submitted data list
+      document.getElementById('submittedDataList').appendChild(rideEntry);
+
+      // Add event listener for the Edit button
+      rideEntry.querySelector('.editButton').addEventListener('click', function() {
+        // Populate the form with the current data
+        document.getElementById('Name_of_Ride').value = ride.Name_of_Ride;
+        document.getElementById('Type_of_Ride').value = ride.Type_of_Ride;
+        document.getElementById('Date_of_Ride').value = ride.Date_of_Ride;
+        document.getElementById('Start_Time').value = ride.Start_Time;
+        document.getElementById('Duration').value = ride.Duration;
+        document.getElementById('Meeting_Point').value = ride.Meeting_Point;
+        document.getElementById('Distance_in_km').value = ride.Distance_in_km;
+        document.getElementById('Elavation_in_m').value = ride.Elavation_in_m;
+        document.getElementById('Maximum_Group_Size').value = ride.Maximum_Group_Size;
+        document.getElementById('Name_of_Leader').value = ride.Name_of_Leader;
+        document.getElementById('Contact_Number').value = ride.Contact_Number;
+        document.getElementById('Alternative_Contact_Number').value = ride.Alternative_Contact_Number;
+        document.getElementById('Comments').value = ride.Comments;
+        document.getElementById('Status').value = ride.Status;
+
+        // Remove the ride entry from the list
+        document.getElementById('submittedDataList').removeChild(rideEntry);
+
+        // Update localStorage
+        const savedRides = JSON.parse(localStorage.getItem('rides')) || [];
+        const updatedRides = savedRides.filter(r => r.Name_of_Ride !== ride.Name_of_Ride);
+        localStorage.setItem('rides', JSON.stringify(updatedRides));
+      });
+
+      // Add event listener for the Delete button
+      rideEntry.querySelector('.deleteButton').addEventListener('click', function() {
+        // Remove the ride entry from the list
+        document.getElementById('submittedDataList').removeChild(rideEntry);
+
+        // Update localStorage
+        const savedRides = JSON.parse(localStorage.getItem('rides')) || [];
+        const updatedRides = savedRides.filter(r => r.Name_of_Ride !== ride.Name_of_Ride);
+        localStorage.setItem('rides', JSON.stringify(updatedRides));
+      });
+    }
+  </script>
+</body>
+</html>
